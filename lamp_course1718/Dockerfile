@@ -27,5 +27,9 @@ ADD ./info.php /var/www/html/
 ADD ./startservices.sh /usr/bin/
 RUN chmod 755 /usr/bin/startservices.sh
 
-### Starting Apache and MySQL services when starting the container
+### Getting the right my.cnf for making the server available outside the container
+### bind-adress = 0.0.0.0
+ADD ./my.cnf /etc/mysql/
+
+
 CMD /usr/bin/startservices.sh

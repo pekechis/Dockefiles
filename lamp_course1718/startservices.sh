@@ -5,3 +5,5 @@ service apache2 start
 
 #Starting mysql server
 service mysql start
+
+/bin/bash
