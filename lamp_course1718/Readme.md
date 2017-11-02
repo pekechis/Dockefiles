@@ -6,6 +6,8 @@
 Juan Diego Pérez Jiménez
 
 
+MySQL Root Password: Admin2015
+
 ## Instructions of using the container
 
 #### First pull the container from DockerHub
