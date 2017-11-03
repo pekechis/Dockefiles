@@ -20,7 +20,8 @@ docker pull iestriana/Lamp
 docker run -it -d --name container_name -v local_folder_for_web_development:/var/www/html -p local_port_for_apache:80 -p local_port_for_mysql:3306 iestriana/Lamp
 ```
 
-For example:
+For example, if we are already running Apache and MySQL servers on the docker host, we must avoid  ports 80 and 3306 (default ports):
+
 ```shell
 docker run -it -d --name lamp -v /home/usuario/php:/var/www/html/ -p 8080:80 -p 3316:3306 iestriana/Lamp
 ```
