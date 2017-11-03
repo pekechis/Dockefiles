@@ -17,7 +17,7 @@ docker pull iestriana/Lamp
 ### Run the container
 
 ```shell
-docker run -it -d --name *container_name* -v *local_folder_for_web_development*:/var/www/html -p *local_port_for_apache*:80 -p *local_port_for_mysql:3306* iestriana/Lamp
+docker run -it -d --name container_name -v local_folder_for_web_development:/var/www/html -p local_port_for_apache:80 -p local_port_for_mysql:3306 iestriana/Lamp
 ```
 
 For example:
@@ -26,6 +26,7 @@ docker run -it -d --name lamp -v /home/usuario/php:/var/www/html/ -p 8080:80 -p 
 ```
 
 ### Give mysql root privileges to access from any ip
+### Must be done if you want MySQL to be used from outside the container
 
 ##### Enter the container
 
