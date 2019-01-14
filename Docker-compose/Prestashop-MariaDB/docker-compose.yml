@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+  mariadb:
+    hostname: servidorbd
+    image: mariadb
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    ports:
+      - "3416:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: prestashop
+      MYSQL_DATABASE: prestashop
+      MYSQL_USER: prestashop
+      MYSQL_PASSWORD: prestashop
+
+  prestashop:
+    depends_on:
+      - mariadb
+    hostname: prestashop
+    image: prestashop
+    build: ./Prestashop
+    ports:
+      - "8585:80"
+volumes:
+  db_data: {}
