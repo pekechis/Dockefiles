@@ -17,6 +17,7 @@ RUN apt-get install -y php-gd
 RUN apt-get install -y php-zip
 RUN apt-get install -y unzip
 RUN apt-get install -y wget
+RUN a2enmod rewrite
 
 # Downloading Prestashop 
 WORKDIR /var/www/html
@@ -29,4 +30,4 @@ EXPOSE 80
 
 #The issue is here: CMD service apache2 start When you execute this command process apache2 
 # will be detached from the shell. But Docker works only while main process is alive.
-CMD apachectl -D FOREGROUND
+CMD  apachectl -D FOREGROUND
