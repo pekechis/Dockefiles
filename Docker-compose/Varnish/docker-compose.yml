@@ -5,7 +5,7 @@ services:
     hostname: apache1
     image: httpd
     volumes:
-      - ./images:/usr/loca/apache2/htdocs/images
+      - ./images:/usr/local/apache2/htdocs/images
     restart: always
     networks:
       red_privada:
@@ -15,7 +15,7 @@ services:
     hostname: apache2
     image: httpd
     volumes:
-      - ./images:/usr/loca/apache2/htdocs
+      - ./images:/usr/local/apache2/htdocs/images
     restart: always
     networks:
       red_privada:
@@ -25,7 +25,7 @@ services:
     hostname: apache3
     image: httpd
     volumes:
-      - ./images:/usr/loca/apache2/htdocs
+      - ./images:/usr/local/apache2/htdocs/images
     restart: always
     networks:
       red_privada:
@@ -34,6 +34,10 @@ services:
   varnish:
     hostname: varnish
     build: .
+    depends_on:
+      - apache1
+      - apache2
+      - apache3
     networks:
       red_privada:
         ipv4_address: 172.16.10.13

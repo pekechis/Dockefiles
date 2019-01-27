@@ -13,8 +13,10 @@ RUN apt-get -y install varnish-doc
 RUN apt-get -y install varnish-modules
 
 
-ADD default.vcl /etc/default/varnish
+ADD default.vcl /etc/varnish
+ADD start.sh /usr/bin
+RUN chmod 755 /usr/bin/start.sh
 
 EXPOSE 6081 6085
 
-CMD varnish
+CMD start.sh
