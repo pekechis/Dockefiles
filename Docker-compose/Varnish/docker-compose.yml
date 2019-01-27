@@ -1,0 +1,47 @@
+version: "3.3"
+
+services:
+  apache1:
+    hostname: apache1
+    image: httpd
+    volumes:
+      - ./images:/usr/loca/apache2/htdocs/images
+    restart: always
+    networks:
+      red_privada:
+        ipv4_address: 172.16.10.10
+
+  apache2:
+    hostname: apache2
+    image: httpd
+    volumes:
+      - ./images:/usr/loca/apache2/htdocs
+    restart: always
+    networks:
+      red_privada:
+        ipv4_address: 172.16.10.11
+
+  apache3:
+    hostname: apache3
+    image: httpd
+    volumes:
+      - ./images:/usr/loca/apache2/htdocs
+    restart: always
+    networks:
+      red_privada:
+        ipv4_address: 172.16.10.12
+
+  varnish:
+    hostname: varnish
+    build: .
+    networks:
+      red_privada:
+        ipv4_address: 172.16.10.13
+
+networks:
+  red_privada:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.10.0/24

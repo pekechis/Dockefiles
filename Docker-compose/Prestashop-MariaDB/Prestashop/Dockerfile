@@ -1,7 +1,13 @@
+# Imagen Base
 FROM ubuntu:18.04
 
+# Autor
+MAINTAINER @pekechis
+
+# Para evitar que me soliciten parámetros de configuración de manera interactiva
 ENV DEBIAN_FRONTEND=noninteractive
 
+# Actualizo los repositorios e instalo los paquetes necesarios Prestashop
 RUN apt-get update
 
 RUN apt-get install -y git
@@ -17,9 +23,11 @@ RUN apt-get install -y php-gd
 RUN apt-get install -y php-zip
 RUN apt-get install -y unzip
 RUN apt-get install -y wget
+
+# Habilito este módulo para Apache
 RUN a2enmod rewrite
 
-# Downloading Prestashop 
+# Descargo Prestashop y lo coloco en el directorio raíz del servidor web
 WORKDIR /var/www/html
 RUN wget https://download.prestashop.com/download/releases/prestashop_1.7.5.0.zip
 RUN unzip prestashop_1.7.5.0.zip
@@ -28,6 +36,5 @@ RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
 
-#The issue is here: CMD service apache2 start When you execute this command process apache2 
-# will be detached from the shell. But Docker works only while main process is alive.
+# Arranco apache en Foreground al iniciar el contenedor
 CMD  apachectl -D FOREGROUND
